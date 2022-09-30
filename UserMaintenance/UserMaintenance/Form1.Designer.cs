@@ -35,6 +35,7 @@ namespace UserMaintenance
             this.button_Add = new System.Windows.Forms.Button();
             this.label_LastName = new System.Windows.Forms.Label();
             this.label_FirstName = new System.Windows.Forms.Label();
+            this.button_Delete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // list_User
@@ -45,6 +46,7 @@ namespace UserMaintenance
             this.list_User.Name = "list_User";
             this.list_User.Size = new System.Drawing.Size(298, 384);
             this.list_User.TabIndex = 0;
+         //   this.list_User.SelectedIndexChanged += new System.EventHandler(this.list_User_SelectedIndexChanged);
             // 
             // text_LastName
             // 
@@ -88,11 +90,22 @@ namespace UserMaintenance
             this.label_FirstName.TabIndex = 5;
             this.label_FirstName.Text = "label2";
             // 
+            // button_Delete
+            // 
+            this.button_Delete.Location = new System.Drawing.Point(398, 307);
+            this.button_Delete.Name = "button_Delete";
+            this.button_Delete.Size = new System.Drawing.Size(340, 49);
+            this.button_Delete.TabIndex = 6;
+            this.button_Delete.Text = "button1";
+            this.button_Delete.UseVisualStyleBackColor = true;
+            this.button_Delete.Click += new System.EventHandler(this.button_Delete_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button_Delete);
             this.Controls.Add(this.label_FirstName);
             this.Controls.Add(this.label_LastName);
             this.Controls.Add(this.button_Add);
@@ -114,6 +127,7 @@ namespace UserMaintenance
         private System.Windows.Forms.Button button_Add;
         private System.Windows.Forms.Label label_LastName;
         private System.Windows.Forms.Label label_FirstName;
+        private System.Windows.Forms.Button button_Delete;
     }
 }
 
