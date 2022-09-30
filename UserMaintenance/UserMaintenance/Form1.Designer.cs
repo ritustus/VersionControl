@@ -31,10 +31,8 @@ namespace UserMaintenance
         {
             this.list_User = new System.Windows.Forms.ListBox();
             this.text_LastName = new System.Windows.Forms.TextBox();
-            this.text_FirstName = new System.Windows.Forms.TextBox();
             this.button_Add = new System.Windows.Forms.Button();
             this.label_LastName = new System.Windows.Forms.Label();
-            this.label_FirstName = new System.Windows.Forms.Label();
             this.button_File = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -53,13 +51,6 @@ namespace UserMaintenance
             this.text_LastName.Name = "text_LastName";
             this.text_LastName.Size = new System.Drawing.Size(270, 26);
             this.text_LastName.TabIndex = 1;
-            // 
-            // text_FirstName
-            // 
-            this.text_FirstName.Location = new System.Drawing.Point(468, 130);
-            this.text_FirstName.Name = "text_FirstName";
-            this.text_FirstName.Size = new System.Drawing.Size(270, 26);
-            this.text_FirstName.TabIndex = 2;
             // 
             // button_Add
             // 
@@ -80,15 +71,6 @@ namespace UserMaintenance
             this.label_LastName.TabIndex = 4;
             this.label_LastName.Text = "label1";
             // 
-            // label_FirstName
-            // 
-            this.label_FirstName.AutoSize = true;
-            this.label_FirstName.Location = new System.Drawing.Point(374, 136);
-            this.label_FirstName.Name = "label_FirstName";
-            this.label_FirstName.Size = new System.Drawing.Size(51, 20);
-            this.label_FirstName.TabIndex = 5;
-            this.label_FirstName.Text = "label2";
-            // 
             // button_File
             // 
             this.button_File.Location = new System.Drawing.Point(398, 303);
@@ -105,10 +87,8 @@ namespace UserMaintenance
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.button_File);
-            this.Controls.Add(this.label_FirstName);
             this.Controls.Add(this.label_LastName);
             this.Controls.Add(this.button_Add);
-            this.Controls.Add(this.text_FirstName);
             this.Controls.Add(this.text_LastName);
             this.Controls.Add(this.list_User);
             this.Name = "Form1";
@@ -122,10 +102,8 @@ namespace UserMaintenance
 
         private System.Windows.Forms.ListBox list_User;
         private System.Windows.Forms.TextBox text_LastName;
-        private System.Windows.Forms.TextBox text_FirstName;
         private System.Windows.Forms.Button button_Add;
         private System.Windows.Forms.Label label_LastName;
-        private System.Windows.Forms.Label label_FirstName;
         private System.Windows.Forms.Button button_File;
     }
 }
