@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Reflection;
-
+using Microsoft.Office.Interop.Excel;
 
 namespace Week04
 {
@@ -27,7 +27,7 @@ namespace Week04
             InitializeComponent();
             LoadData();
             CreateExcel();
-           // GetCell();
+           
         }
 
         private void LoadData() 
@@ -102,7 +102,7 @@ namespace Week04
                 values[counter, 5] = f.NumberOfRooms;
                 values[counter, 6] = f.FloorArea;
                 values[counter, 7] = f.Price;
-                values[counter, 8] = $"=(H{counter + 2 }/ G{counter + 2}) * 1000000";
+                values[counter, 8] =$"=(H{counter + 2 }/ G{counter + 2}) * 1000000)";
                 counter++;
 
                 xlSheet.get_Range
@@ -120,6 +120,22 @@ namespace Week04
             headerRange.RowHeight = 40;
             headerRange.Interior.Color = Color.LightBlue;
             headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            int lastRowID = xlSheet.UsedRange.Rows.Count;
+            Excel.Range fullRange = xlSheet.get_Range(GetCell(1,1), GetCell(lastRowID,headers.Length));
+            fullRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlMedium);
+
+            Excel.Range firstColumn = xlSheet.get_Range(GetCell(1, 1), GetCell(lastRowID, 1));
+            firstColumn.Font.Bold = true;
+            firstColumn.Interior.Color = Color.LightYellow;
+
+            Excel.Range lastColumn = xlSheet.get_Range(GetCell(2, 2), GetCell(lastRowID, headers.Length));
+            lastColumn.Interior.Color = Color.LightGreen;
+            //lastColumn.NumberFormat = "0.00";
+            
+            
+
+
 
 
         }
