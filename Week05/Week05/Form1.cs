@@ -26,6 +26,8 @@ namespace Week05
             dataGridView1.DataSource = Rates;
             GetExchangeRates();
             chartRateData.DataSource = Rates;
+            RefreshData();
+            comboBox1.Text = "EUR";
             
 
         }
@@ -35,9 +37,9 @@ namespace Week05
             var mnbService = new MNBArfolyamServiceSoapClient();
             var request = new GetExchangeRatesRequestBody()
             {
-                currencyNames = "EUR",
-                startDate = "2020-01-01",
-                endDate = "2020-06-30"
+                currencyNames = (string)comboBox1.SelectedItem,
+                startDate = dtmpStart.Value.ToString(),
+                endDate = dtmpEnd.Value.ToString()
             };
 
 
@@ -85,13 +87,25 @@ namespace Week05
             }
         }
 
-      
+        private void RefreshData() 
+        {
+            Rates.Clear();
+            
+        }
 
-        
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
 
-       
-        
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
 
-       
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
     }
 }
