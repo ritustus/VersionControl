@@ -24,7 +24,7 @@ namespace Week06.Entities
             throw new NotImplementedException();
         }
 
-        private void DrawImage(Graphics graphics)
+        protected void DrawImage(Graphics graphics)
         {
 
         }
