@@ -21,12 +21,12 @@ namespace Week06.Entities
 
         private void Ball_Paint(object sender, PaintEventArgs e)
         {
-            throw new NotImplementedException();
+            DrawImage(e.Graphics);
         }
 
         protected void DrawImage(Graphics graphics)
         {
-
+            graphics.FillEllipse(new SolidBrush(Color.Blue), 0, 0, Width, Height);
         }
 
         public void MoveBall() 
