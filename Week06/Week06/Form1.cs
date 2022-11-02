@@ -13,7 +13,7 @@ namespace Week06
 {
     public partial class Form1 : Form
     {
-        List<Ball> _balls = new List<Ball>();
+        List<Toy> _toys = new List<Toy>();
         private BallFactory _factory;
         public BallFactory Factory 
         {
@@ -32,7 +32,7 @@ namespace Week06
         private void timer1_Tick(object sender, EventArgs e)
         {
             var ball = Factory.CreateNew();
-            _balls.Add(ball);
+            _toys.Add(ball);
             mainPanel.Controls.Add(ball);
             ball.Left = -ball.Width;
         }
@@ -40,7 +40,7 @@ namespace Week06
         private void timer2_Tick(object sender, EventArgs e)
         {
             var maxPosition = 0;
-            foreach (var ball in _balls)
+            foreach (var ball in _toys)
             {
                 ball.MoveBall();
                 if (ball.Left > maxPosition)
@@ -50,8 +50,8 @@ namespace Week06
 
                 if (maxPosition > 1000)
                 {
-                    var d = _balls[0];
-                    _balls.Remove(d);
+                    var d = _toys[0];
+                    _toys.Remove(d);
                     mainPanel.Controls.Remove(d);
                 }
                 
