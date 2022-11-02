@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Week06.Abstractions;
 using Week06.Entities;
 
 namespace Week06
@@ -14,8 +15,9 @@ namespace Week06
     public partial class Form1 : Form
     {
         List<Toy> _toys = new List<Toy>();
-        private BallFactory _factory;
-        public BallFactory Factory 
+
+        private IToyFactory _factory;
+        public IToyFactory Factory 
         {
             get { return _factory; }
 
@@ -31,10 +33,10 @@ namespace Week06
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            var ball = Factory.CreateNew();
-            _toys.Add(ball);
-            mainPanel.Controls.Add(ball);
-            ball.Left = -ball.Width;
+            var toy = Factory.CreateNew();
+            _toys.Add(toy);
+            mainPanel.Controls.Add(toy);
+            toy.Left = -toy.Width;
         }
 
         private void timer2_Tick(object sender, EventArgs e)
@@ -42,7 +44,7 @@ namespace Week06
             var maxPosition = 0;
             foreach (var ball in _toys)
             {
-                ball.MoveBall();
+                ball.MoveToy();
                 if (ball.Left > maxPosition)
                 {
                     maxPosition = ball.Left;
