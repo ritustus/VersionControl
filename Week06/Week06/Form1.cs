@@ -60,5 +60,15 @@ namespace Week06
             }
 
         }
+
+        private void btn_car_Click(object sender, EventArgs e)
+        {
+            Factory = new CarFactory();
+        }
+
+        private void btn_ball_Click(object sender, EventArgs e)
+        {
+            Factory = new BallFactory();
+        }
     }
 }
