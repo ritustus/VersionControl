@@ -16,13 +16,33 @@ namespace Week07
         List<Tick> Ticks;
         PortfolioEntities context = new PortfolioEntities();
         List<PortfolioItem> Portfolio = new List<PortfolioItem>();
+        List<decimal> Gainings = new List<decimal>();
+
+      
         public Form1()
         {
             InitializeComponent();
             Ticks = context.Ticks.ToList();
             dataGridView1.DataSource = Ticks;
             CreatePortfolio();
-            
+
+            int interval = 30;
+            DateTime startDate = (from x in Ticks
+                                   select x.TradingDay).Min();
+            DateTime endDate = new DateTime(2016, 12, 30);
+            TimeSpan z = endDate - startDate;
+            for (int i = 0; i < z.Days; i++)
+            {
+                decimal g = GetPortfolioValue(startDate.AddDays(i + interval)) - GetPortfolioValue(startDate.AddDays(i));
+                Gainings.Add(g);
+                Console.WriteLine(i + " " + g);
+
+            }
+
+            var orderedGainings = (from x in Gainings
+                                   orderby x
+                                   select x).ToList();
+            MessageBox.Show(orderedGainings[orderedGainings.Count() / 5].ToString());
         }
 
         private void CreatePortfolio()
@@ -48,6 +68,8 @@ namespace Week07
 
             return value;
         }
+
+
 
 
     }
