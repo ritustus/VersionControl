@@ -33,7 +33,7 @@
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Volume" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="PortfolioEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="PortfolioEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Ticks" EntityType="Self.Tick" />
         </EntityContainer>
       </Schema>
@@ -41,7 +41,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PortfolioModelStoreContainer" CdmEntityContainer="PortfolioEntities">
+        <EntityContainerMapping StorageEntityContainer="PortfolioModelStoreContainer" CdmEntityContainer="PortfolioEntities2">
           <EntitySetMapping Name="Ticks">
             <EntityTypeMapping TypeName="PortfolioModel.Tick">
               <MappingFragment StoreEntitySet="Tick">

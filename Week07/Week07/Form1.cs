@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,12 +14,14 @@ namespace Week07
 {
     public partial class Form1 : Form
     {
+        
+        
+        PortfolioEntities2 context = new PortfolioEntities2();
         List<Tick> Ticks;
-        PortfolioEntities context = new PortfolioEntities();
         List<PortfolioItem> Portfolio = new List<PortfolioItem>();
-        List<decimal> Gainings = new List<decimal>();
+        
 
-      
+
         public Form1()
         {
             InitializeComponent();
@@ -26,12 +29,18 @@ namespace Week07
             dataGridView1.DataSource = Ticks;
             CreatePortfolio();
 
+            Calculate();
+        }
+
+        private void Calculate()
+        {
+            List<decimal> Gainings = new List<decimal>();
             int interval = 30;
             DateTime startDate = (from x in Ticks
-                                   select x.TradingDay).Min();
+                                  select x.TradingDay).Min();
             DateTime endDate = new DateTime(2016, 12, 30);
             TimeSpan z = endDate - startDate;
-            for (int i = 0; i < z.Days; i++)
+            for (int i = 0; i < z.Days - interval; i++)
             {
                 decimal g = GetPortfolioValue(startDate.AddDays(i + interval)) - GetPortfolioValue(startDate.AddDays(i));
                 Gainings.Add(g);
@@ -60,7 +69,7 @@ namespace Week07
             foreach (var item in Portfolio)
             {
                 var last = (from x in Ticks
-                            where item.Index == x.Index.Trim() //a Trim()-el levágjuk a felesleges karaktereket amikkel fel van töltve az index mező
+                            where item.Index == x.Index.Trim() 
                             && date <= x.TradingDay
                             select x).First();
                 value += (decimal)last.Price * item.Volume;
@@ -69,8 +78,28 @@ namespace Week07
             return value;
         }
 
+        private void btn_save_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.AddExtension = true;
+            sfd.Filter = "vesszővel elválasztott (*.csv) | *.csv";
+            sfd.DefaultExt = "csv";
+            sfd.InitialDirectory = Application.StartupPath;
 
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter sw = new StreamWriter(sfd.FileName, false, Encoding.Default);
+                sw.WriteLine($"{"Időszak"}; {"Nyereség"}");
 
+                foreach (var r in Ticks)
+                {
+                    sw.WriteLine($"{r.Tick_id}; {r.Price}");
+
+                }
+                sw.Close();
+            }
+
+        }
 
     }
 }

@@ -31,6 +31,7 @@ namespace Week07
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.btn_save = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -55,11 +56,22 @@ namespace Week07
             this.dataGridView2.Size = new System.Drawing.Size(291, 371);
             this.dataGridView2.TabIndex = 1;
             // 
+            // btn_save
+            // 
+            this.btn_save.Location = new System.Drawing.Point(299, 408);
+            this.btn_save.Name = "btn_save";
+            this.btn_save.Size = new System.Drawing.Size(121, 40);
+            this.btn_save.TabIndex = 2;
+            this.btn_save.Text = "Mentés";
+            this.btn_save.UseVisualStyleBackColor = true;
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_save);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Form1";
@@ -74,6 +86,7 @@ namespace Week07
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button btn_save;
     }
 }
 

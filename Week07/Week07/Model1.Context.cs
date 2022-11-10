@@ -13,10 +13,10 @@ namespace Week07
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PortfolioEntities : DbContext
+    public partial class PortfolioEntities2 : DbContext
     {
-        public PortfolioEntities()
-            : base("name=PortfolioEntities")
+        public PortfolioEntities2()
+            : base("name=PortfolioEntities2")
         {
         }
     
@@ -26,5 +26,6 @@ namespace Week07
         }
     
         public virtual DbSet<Tick> Ticks { get; set; }
+        public object Tick { get; internal set; }
     }
 }
