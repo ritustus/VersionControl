@@ -43,7 +43,7 @@ namespace Week07
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(283, 371);
+            this.dataGridView1.Size = new System.Drawing.Size(347, 371);
             this.dataGridView1.TabIndex = 0;
             // 
             // dataGridView2
@@ -53,7 +53,7 @@ namespace Week07
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 62;
             this.dataGridView2.RowTemplate.Height = 28;
-            this.dataGridView2.Size = new System.Drawing.Size(291, 371);
+            this.dataGridView2.Size = new System.Drawing.Size(353, 371);
             this.dataGridView2.TabIndex = 1;
             // 
             // btn_save
@@ -70,7 +70,7 @@ namespace Week07
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 464);
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);

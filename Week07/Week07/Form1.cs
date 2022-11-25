@@ -13,22 +13,17 @@ using Week07.Entities;
 namespace Week07
 {
     public partial class Form1 : Form
-    {
-        
-        
+    {                
         PortfolioEntities2 context = new PortfolioEntities2();
         List<Tick> Ticks;
         List<PortfolioItem> Portfolio = new List<PortfolioItem>();
         
-
-
         public Form1()
         {
             InitializeComponent();
             Ticks = context.Ticks.ToList();
             dataGridView1.DataSource = Ticks;
             CreatePortfolio();
-
             Calculate();
         }
 
