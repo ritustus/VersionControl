@@ -17,6 +17,7 @@ namespace Week09
         List<Person> Population = new List<Person>();
         List<BirthProbability> BirthProbabilities = new List<BirthProbability>();
         List<DeathProbability> DeathProbabilities = new List<DeathProbability>();
+        Random rng = new Random(1500);
 
         public Form1()
         {
@@ -25,6 +26,29 @@ namespace Week09
             Population = GetPopulation(@"C:\Windows\Temp\név.csv");
             BirthProbabilities = GetBirthProbabilities(@"C:\Windows\Temp\születés.csv");
             DeathProbabilities = GetDeathProbabilities(@"C:\Windows\Temp\halál.csv");
+
+
+        }
+
+        private void Simulator() 
+        {
+            for (int year = 2005; year <= 2024; year++) //vizsgált évek
+            {
+                for (int p = 0; p < Population.Count; p++) //vizsgált összes személy
+                {
+
+                }
+
+                int nbrOfMales = (from m in Population
+                                  where m.Gender == Gender.Male && m.IsAlive
+                                  select m).Count();
+
+                int nbrOfFemales = (from f in Population
+                                    where f.Gender == Gender.Female && f.IsAlive
+                                    select f).Count();
+
+                Console.WriteLine(string.Format("Év:{0} Fiúk{1} Lányok{2}", year, nbrOfMales, nbrOfFemales));
+            }
         }
 
 
