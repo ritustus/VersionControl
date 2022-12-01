@@ -23,6 +23,8 @@ namespace Week09
             InitializeComponent();
 
             Population = GetPopulation(@"C:\Windows\Temp\név.csv");
+            BirthProbabilities = GetBirthProbabilities(@"C:\Windows\Temp\születés.csv");
+            DeathProbabilities = GetDeathProbabilities(@"C:\Windows\Temp\halál.csv");
         }
 
 
