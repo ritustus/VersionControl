@@ -36,7 +36,7 @@ namespace Week09
             {
                 for (int p = 0; p < Population.Count; p++) //vizsgált összes személy
                 {
-
+                    //SimStep(year, person);
                 }
 
                 int nbrOfMales = (from m in Population
@@ -49,6 +49,47 @@ namespace Week09
 
                 Console.WriteLine(string.Format("Év:{0} Fiúk{1} Lányok{2}", year, nbrOfMales, nbrOfFemales));
             }
+        }
+
+        private void SimStep(int year, Person person) 
+        {
+            if (person.IsAlive == false)
+            {
+                return;
+            }
+
+            byte age = (byte)(year - person.BirthYear);
+
+            //halálozási valószínűség lekérdezése
+            double dprob = (from dp in DeathProbabilities
+                         where dp.Gender == person.Gender && dp.Age == age
+                         select dp.DProb).FirstOrDefault();
+
+
+            //az adott személy meghal-e?
+            if (rng.NextDouble() <= dprob)
+            {
+                person.IsAlive = false;
+            }
+
+            if (person.IsAlive && person.Gender == Gender.Female)
+            {
+                //születési valószínűség lekérdezése
+                double bprob = (from bp in BirthProbabilities
+                                where bp.Age == age
+                                select bp.BProb).FirstOrDefault();
+
+                //születik-e gyermek?
+                if (rng.NextDouble() >= bprob)
+                {
+                    Person newborn = new Person();
+                    newborn.BirthYear = year;
+                    newborn.Gender = (Gender)(rng.Next(1, 3));
+                    newborn.NbrOfChildren = 0;
+                    Population.Add(newborn);
+                }
+            }
+
         }
 
 
