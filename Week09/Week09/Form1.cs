@@ -48,5 +48,51 @@ namespace Week09
 
             return population;
         }
+
+        public List<BirthProbability> GetBirthProbabilities(string csvpath)
+        {
+            List<BirthProbability> birthprob = new List<BirthProbability>();
+
+            StreamReader sr = new StreamReader(csvpath, Encoding.Default);
+
+            while (!sr.EndOfStream)
+            {
+                var line = sr.ReadLine().Split(';');
+                birthprob.Add(new BirthProbability()
+                {
+                    Age = int.Parse(line[0]),
+                    NbrOfChildren = int.Parse(line[1]),
+                    BProb = double.Parse(line[2])
+
+                });
+
+
+            }
+
+            return birthprob;
+        }
+
+        public List<DeathProbability> GetDeathProbabilities(string csvpath)
+        {
+            List<DeathProbability> deathprob = new List<DeathProbability>();
+
+            StreamReader sr = new StreamReader(csvpath, Encoding.Default);
+
+            while (!sr.EndOfStream)
+            {
+                var line = sr.ReadLine().Split(';');
+                deathprob.Add(new DeathProbability()
+                {
+                    Gender = (Gender)Enum.Parse(typeof(Gender), line[0]),
+                    Age = int.Parse(line[1]),
+                    DProb = double.Parse(line[2])
+
+                });
+
+
+            }
+
+            return deathprob;
+        }
     }
 }
