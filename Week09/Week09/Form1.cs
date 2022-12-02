@@ -19,35 +19,53 @@ namespace Week09
         List<DeathProbability> DeathProbabilities = new List<DeathProbability>();
         Random rng = new Random(1234);
 
+        List<int> males = new List<int>();
+        List<int> females = new List<int>();
+        
+
         public Form1()
         {
             InitializeComponent();
 
-            Population = GetPopulation(@"C:\Windows\Temp\név.csv");
-            BirthProbabilities = GetBirthProbabilities(@"C:\Windows\Temp\születés.csv");
-            DeathProbabilities = GetDeathProbabilities(@"C:\Windows\Temp\halál.csv");
-
+            
 
         }
 
-        private void Simulator() 
+        private void Simulation() 
         {
+            Population = GetPopulation(textBox1.Text);
+            BirthProbabilities = GetBirthProbabilities(@"C:\Windows\Temp\születés.csv");
+            DeathProbabilities = GetDeathProbabilities(@"C:\Windows\Temp\halál.csv");
+
             for (int year = 2005; year <= 2024; year++) //vizsgált évek
             {
-                for (int p = 0; p < Population.Count; p++) //vizsgált összes személy
+                for (int p = 0; p < numericUpDown1.Value; p++) //vizsgált összes személy
                 {
-                    //SimStep(year, person);
+                    SimStep(year, Population[p]);
                 }
 
                 int nbrOfMales = (from m in Population
                                   where m.Gender == Gender.Male && m.IsAlive
                                   select m).Count();
+                males.Add(nbrOfMales);
 
                 int nbrOfFemales = (from f in Population
                                     where f.Gender == Gender.Female && f.IsAlive
                                     select f).Count();
+                females.Add(nbrOfFemales);
 
                 Console.WriteLine(string.Format("Év:{0} Fiúk{1} Lányok{2}", year, nbrOfMales, nbrOfFemales));
+            }
+        }
+
+
+        private void DisplayResult()
+        {
+            
+            for (int year = 2005; year <= numericUpDown1.Value; year++)
+            {
+                richTextBox1.AppendText("Szimulációs év: " + year + "\n" + "\t" + "Fiúk: " + "\n" + "\t" + "Lányok: " + "\n" + "\n");
+                
             }
         }
 
@@ -160,6 +178,27 @@ namespace Week09
             }
 
             return deathprob;
+        }
+
+        private void btn_browse_Click(object sender, EventArgs e)
+        {
+            //openfiledialog kell
+
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.InitialDirectory = @"C:\Windows\Temp";
+
+                if (openFileDialog.ShowDialog() != DialogResult.OK) return;
+
+                textBox1.Text = openFileDialog.FileName;
+            }
+        }
+
+        private void btn_start_Click(object sender, EventArgs e)
+        {
+            Simulation();
+
+
         }
     }
 }
