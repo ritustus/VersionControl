@@ -27,7 +27,7 @@ namespace Week10
         {
             InitializeComponent();
 
-            bn_start.Visible = false;
+            btn_start.Visible = false;
 
             ga = gc.ActivateDisplay();
             this.Controls.Add(ga);
@@ -80,7 +80,7 @@ namespace Week10
             gc.Start();
 
             var winners = from p in topPerformers
-                          where p.IsWinner
+                          where !p.IsWinner
                           select p;
 
             if (winners.Count() > 0)
@@ -88,13 +88,13 @@ namespace Week10
                 winnerBrain = winners.FirstOrDefault().Brain.Clone();
                 gc.GameOver -= Gc_GameOver;
 
-                bn_start.Visible = true;
+                btn_start.Visible = true;
 
                 return;
             }
         }
 
-        private void btn_save_Click(object sender, EventArgs e)
+        private void btn_start_Click(object sender, EventArgs e)
         {
             gc.ResetCurrentLevel();
             gc.AddPlayer(winnerBrain.Clone());
